@@ -7,12 +7,13 @@
 </h1>
 <input type="button" onclick="clearInterval(timer)" value="STOP COUNTDOWN" />
 <script>
-  var i=100;
+  var i=0;
   var timer =setInterval(function(){
-    document.getElementById("here").innerHTML=i--;
+    document.getElementById("here").innerHTML=i++;
   },1000);
 
 
 </script>
 </body>
 </html>
+ctx.fillRect(leftBorder, topBorder, rightBorder, bottomBorder);
