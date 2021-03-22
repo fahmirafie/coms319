@@ -88,90 +88,62 @@ class App extends React.Component {
         };
 
         this.handleAddStock = this.handleAddStock.bind(this);
-        this.sortYear = this.sortYear.bind(this);
-        this.regularSort = this.regularSort.bind(this);
-        this.reverseSort = this.reverseSort.bind(this);
+        // this.sort = this.sort(this);
     }
 
     handleAddStock(i) {
+        
         var carArray = this.state.cars;
-        carArray[i].stock = carArray[i].stock + 1
-        this.setState({ cars: carArray });
+        carArray[parseInt(i)].stock = carArray[parseInt(i)].stock + 1
+        this.setState({cars: carArray});
     }
-
-    sortYear() {
-        var carArray = this.state.cars;
-
-        var isSorted = false;
-        if (!isSorted) {
-            for (var i = 0; i < carArray.length - 1; i++) {
-                if (carArray[i].year > carArray[i + 1].year) {
-                    isSorted = true;
-                    carArray.sort(this.regularSort);
-                    break;
-                } else {
-                    isSorted = true;
-                    carArray.sort(this.reverseSort);
-                    break;
-                }
-            }
-        }
-
-        carArray.sort();
-        this.setState({ cars: carArray });
-    }
-
-    regularSort(a, b) {
-        var test = a.year;
-        if (a.year > b.year) {
-            return 1;
-        }
-        if (a.year < b.year) {
-            return -1;
-        }
-        return 0;
-    }
-
-    reverseSort(a, b) {
-        var test = a.year;
-        if (a.year < b.year) {
-            return 1;
-        }
-        if (a.year > b.year) {
-            return -1;
-        }
-        return 0;
-    }
-
-
+    
+    // sortByYear() {
+    //     var carArray = this.state.cars;
+    //     carArray.sort(function(a, b) {
+    //         return [a].year - [b].year;
+    //     }
+    //     this.setState({cars: carArray});
+    // }
 
     render() {
         return (
             <div>
                 <table>
-                    <tr>
-                        <th>manufacturer</th>
-                        <th>model</th>
-                        <td><button onClick={() => this.sortYear()}>year</button></td>
-                        <th>stock</th>
-                        <th>price</th>
-                        <th>Option</th>
-                    </tr>
-                    {this.state.cars.map((car, i) =>
-                        <tr key={i}>
-                            <td>{car.manufacturer}</td>
-                            <td>{car.model}</td>
-                            <td>{car.year}</td>
-                            <td>{car.stock}</td>
-                            <td>${car.price}.00</td>
-                            <td><button onClick={() => this.handleAddStock(i)}>Increment</button></td>
-                        </tr>
-                    )}
+                    <tbody>
+                        <Heading />
+                        {/* {this.state.cars.map((car, index) => <Car key={i} cars={car} />)} */}
+                        {this.state.cars.map((car, i) => 
+                            <tr>
+                                <td>{car.manufacturer}</td>
+                                <td>{car.model}</td>
+                                <td>{car.year}</td>
+                                <td>{car.stock}</td>
+                                <td>${car.price}.00</td>
+                                <td><button onClick={() => this.handleAddStock(i)}>Increment</button></td>
+                            </tr>
+                        )}
+                    </tbody>
                 </table>
             </div>
         );
     }
 
+}
+
+class Heading extends React.Component {
+    render() {
+        return (
+            <tr>
+                <th>manufacturer</th>
+                <th>model</th>
+                <th><button><b>year</b></button></th>
+                <th>stock</th>
+                <th>price</th>
+                <th>Option</th>
+            </tr>
+        );
+    }
 }
 
 ReactDOM.render(<App />, document.getElementById("app"))

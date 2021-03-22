@@ -149,24 +149,28 @@ class App extends React.Component {
         return (
             <div>
                 <table>
-                    <tr>
-                        <th>manufacturer</th>
-                        <th>model</th>
-                        <td><button onClick={() => this.sortYear()}>year</button></td>
-                        <th>stock</th>
-                        <th>price</th>
-                        <th>Option</th>
-                    </tr>
-                    {this.state.cars.map((car, i) =>
-                        <tr key={i}>
-                            <td>{car.manufacturer}</td>
-                            <td>{car.model}</td>
-                            <td>{car.year}</td>
-                            <td>{car.stock}</td>
-                            <td>${car.price}.00</td>
-                            <td><button onClick={() => this.handleAddStock(i)}>Increment</button></td>
+                    <tbody>
+                        {/* <Heading /> */}
+                        <tr>
+                            <th>manufacturer</th>
+                            <th>model</th>
+                            <td><button onClick={() => this.sortYear()}>year</button></td>
+                            {/* <th><button><b>year</b></button></th> */}
+                            <th>stock</th>
+                            <th>price</th>
+                            <th>Option</th>
                         </tr>
-                    )}
+                        {this.state.cars.map((car, i) =>
+                            <tr key={i}>
+                                <td>{car.manufacturer}</td>
+                                <td>{car.model}</td>
+                                <td>{car.year}</td>
+                                <td>{car.stock}</td>
+                                <td>${car.price}.00</td>
+                                <td><button onClick={() => this.handleAddStock(i)}>Increment</button></td>
+                            </tr>
+                        )}
+                    </tbody>
                 </table>
             </div>
         );
