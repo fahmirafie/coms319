@@ -1,1 +1,4 @@
 .vscode/launch.json
+.vscode/configurationCache.log
+.gitignore
+Homeworks/HW4/HW04-React-SampleCodes-v2/HW04-React-SampleCodes-v2/node_modules
